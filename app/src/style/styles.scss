@@ -2,3 +2,9 @@
 @import "base/fonts";
 @import "helpers/variables";
 @import "helpers/mixins";
+@import "blocks/app";
+@import "blocks/btn";
+
+.hidden{
+    display: none;
+}

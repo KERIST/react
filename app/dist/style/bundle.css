@@ -38,13 +38,4 @@ q:before, q:after {
   content: '';
   content: none; }
 
-#app {
-  background: red;
-  height: 30px;
-  width: 30px; }
-
-#app {
-  width: 100px;
-  background: #000; }
-
 /*# sourceMappingURL=../sourcemaps/style/bundle.css.map*/
