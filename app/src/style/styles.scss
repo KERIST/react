@@ -1,0 +1,9 @@
+@import "base/reset";
+@import "base/fonts";
+@import "helpers/variables";
+@import "helpers/mixins";
+@import "blocks/file";
+#app{
+    width: 100px;
+    background: #000;
+}
