@@ -3,8 +3,6 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
-const DEBUG = process.env.NODE_ENV !== 'production';
-
 // >> Target Structure <<
 // > Root App
 const APP_FOLDER = path.resolve(__dirname, './app');
@@ -58,47 +56,16 @@ module.exports = {
 			},
 		], // rules
 	}, // module
-	devtool: DEBUG ? 'source-map' : '',
+	devtool: 'source-map',
 	context: __dirname,
 	target: 'web',
-	plugins:
-		DEBUG ?
-			[
-				// > Configure CSS Bundle file
+	plugins: [
 				new ExtractTextPlugin({
 					filename: DIST_FILE_CSS_BUNDLE,
 					disable: false,
 					allChunks: true,
 				}),
-			] :
-			[
-				new webpack.DefinePlugin({
-					'process.env': {
-						NODE_ENV: JSON.stringify('production'),
-					},
-				}),
-				new webpack.optimize.OccurrenceOrderPlugin(),
-				// > Minimize JS
-				new webpack.optimize.UglifyJsPlugin({
-					sourceMap: false,
-					mangle: false,
-				}),
-				// > CSS Bundle
-				new ExtractTextPlugin({
-					filename: DIST_FILE_CSS_BUNDLE,
-					disable: false,
-					allChunks: true,
-				}),
-				// > Minimize CSS
-				new OptimizeCssAssetsPlugin({
-					assetNameRegExp: DIST_FILE_CSS_BUNDLE_NAME,
-					cssProcessor: require('cssnano'),
-					cssProcessorOptions: {
-						discardComments: { removeAll: true },
-					},
-					canPrint: true,
-				}),
-			], // plugins
+			],
 	cache: false,
 	watchOptions: {
 		aggregateTimeout: 1000,
